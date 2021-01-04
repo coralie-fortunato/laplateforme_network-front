@@ -1,0 +1,26 @@
+.card {
+  padding: 1rem;
+  border-radius: 1.5rem;
+  margin: 1rem;
+}
+
+.card .img-fluid {
+  border-radius: 1.5rem;
+}
+
+.text-left {
+  text-align: justify;
+}
+
+.card svg {
+  cursor: pointer;
+}
+
+.card .comment p {
+  color: #515151;
+  font-size: 0.9rem;
+}
+
+.card .comment:hover p {
+  color: initial;
+}

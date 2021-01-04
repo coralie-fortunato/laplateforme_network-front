@@ -1,0 +1,34 @@
+@media screen and (min-width: 1200px) {
+  #chat-main-row {
+    height: 90vh;
+  }
+  #chat-action-row {
+    height: 10vh;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  #chat-main-row {
+    height: 80vh;
+  }
+  #chat-action-row {
+    height: 20vh;
+  }
+}
+
+.h-screen{
+  height: 100vh;
+}
+
+.z-0{
+
+  z-index: 0;
+
+}
+
+
+.z-500{
+
+  z-index: 500;
+  
+}

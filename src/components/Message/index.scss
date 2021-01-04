@@ -1,0 +1,19 @@
+.message {
+  background-color: var(--var-white);
+  border-radius: 26px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 1px solid #dcdcdc;
+}
+
+.message:nth-child(odd) {
+  align-self: flex-start;
+}
+
+.message:nth-child(even) {
+  align-self: flex-end;
+}

@@ -1,0 +1,100 @@
+/* COLOR SCHEMES  */
+
+:root {
+  --var-primary: #2660a0;
+  --var-secondary: #89c1ce;
+  --var-dark: #0c0b11;
+  --var-dark-light: #515151;
+  --var-grey: #c4c4c4;
+  --var-yellow: #ffca4e;
+  --var-danger: #ff4a4a;
+  --var-danger-light: #ffcccc;
+  --var-white: #fff;
+}
+
+$border-radius: 26px;
+
+/* TEXT COLORS */
+
+.text-primary-color {
+  color: var(--var-primary);
+}
+
+.text-secondary-color {
+  color: var(--var-secondary);
+}
+
+.text-dark-color {
+  color: var(--var-dark);
+}
+
+.text-dark-light-color {
+  color: var(--var-dark-light);
+}
+
+.text-grey-color {
+  color: var(--var-grey);
+}
+
+.text-yellow-color {
+  color: var(--var-yellow);
+}
+
+.text-danger-color {
+  color: var(--var-danger);
+}
+
+.text-danger-light-color {
+  color: var(--var-danger-light);
+}
+
+/* BACKGROUND COLORS */
+
+.bg-primary-color {
+  background-color: var(--var-primary);
+}
+
+.bg-secondary-color {
+  background-color: var(--var-secondary);
+}
+
+.bg-dark-color {
+  background-color: var(--var-dark);
+}
+
+.bg-dark-light-color {
+  background-color: var(--var-dark-light);
+}
+
+.bg-grey-color {
+  background-color: var(--var-grey);
+}
+
+.bg-yellow-color {
+  background-color: var(--var-yellow);
+}
+
+.bg-danger-color {
+  background-color: var(--var-danger);
+}
+
+.bg-danger-light-color {
+  background-color: var(--var-danger-light);
+}
+
+// GENERAL STYLES
+
+main {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #979797;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(244, 244, 244, 0.75);
+}

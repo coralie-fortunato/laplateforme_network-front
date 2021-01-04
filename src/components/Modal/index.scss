@@ -1,0 +1,22 @@
+@media screen and (min-width: 768px) {
+  #modal {
+    min-height: 75vh;
+    top: 50%;
+    bottom: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #modal {
+    min-height: 100vh;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+#modal {
+  position: fixed;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+}

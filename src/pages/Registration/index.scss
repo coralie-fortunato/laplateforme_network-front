@@ -1,0 +1,53 @@
+.bg-register {
+  background-image: url(./img/signup.jpg);
+}
+.absolute-left {
+  position: absolute;
+  left: 1rem;
+}
+
+.overlay-linear-gradient {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(
+    107.41deg,
+    rgba(255, 255, 255, 0.8) 0.21%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.laplateforme-logo {
+  height: 15rem;
+  width: 15rem;
+}
+
+#card-sign-up {
+  background-color: #89c1ce;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#card-sign-up button img {
+  height: 26px;
+  width: 26px;
+}
+
+@media screen and (min-width: 992px) {
+  #card-sign-up {
+    height: 888px;
+    width: 710px;
+    border-radius: 26px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #card-sign-up {
+    height: 100vh;
+    width: 100vw;
+  }
+}
