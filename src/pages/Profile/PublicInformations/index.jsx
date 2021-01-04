@@ -4,7 +4,7 @@ import linkedin_logo from './icons/linkedin_brand.png'
 import IconWebsite from '../../../components/icons/IconWebsite/index'
 import parseDate from '../../../helpers/parseDate'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { follow, unFollow } from '../../../services/Api/requests'
 
 const PublicInformations = ({
@@ -28,6 +28,7 @@ const PublicInformations = ({
 	deleteFollow,
 	currentUserFollow,
 }) => {
+	const history = useHistory()
 	const { user_id } = useParams()
 	const current_user = useSelector((state) => state.current_user)
 	const [status, setStatus] = useState('loading')
@@ -121,7 +122,10 @@ const PublicInformations = ({
 					</button>
 				) : (
 					<>
-						<button className='col-lg-4 btn btn-lg btn-primary my-2'>
+						<button
+							className='col-lg-4 btn btn-lg btn-primary my-2'
+							onClick={() => history.push('/chat')}
+						>
 							CONTACTER
 						</button>
 						<button

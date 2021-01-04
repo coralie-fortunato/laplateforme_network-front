@@ -7,7 +7,7 @@ const Navigation = ({ chatSectionContainerRef }) => {
 	const current_user = useSelector((state) => state.current_user)
 
 	return (
-		<ul className='nav flex-column col-12 p-4'>
+		<ul className='nav flex-column col-12'>
 			<Link
 				to='/feed'
 				className='navbar-brand d-none d-lg-block'

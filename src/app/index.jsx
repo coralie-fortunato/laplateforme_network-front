@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Registration from '../pages/Registration'
 import Profile from '../pages/Profile'
@@ -9,22 +9,20 @@ import { getCurrentUser } from '../services/Api/requests'
 import { useDispatch } from 'react-redux'
 import { setCurrentUser } from '../store/actions'
 import ErrorPage from '../pages/ErrorPage'
-import LoaderSpinner from '../components/LoaderSpinner'
 import Timer from '../components/Timer/index'
+import AuthorizeUser from '../components/AuthorizeUser/index'
 
 const App = () => {
 	const dispatch = useDispatch()
-	const [status, setStatus] = useState('loading')
 	useEffect(() => {
 		const fetchCurrentUser = async () => {
-			const { data, status } = await getCurrentUser()
+			const { data } = await getCurrentUser()
 			dispatch(setCurrentUser(data))
-			setStatus(status)
 		}
 		fetchCurrentUser()
 	}, [])
 
-	return status === 200 ? (
+	return (
 		<Router>
 			<Switch>
 				<Route exact path='/'>
@@ -40,22 +38,17 @@ const App = () => {
 				</Route>
 
 				<Route exact path='/chat'>
-					<Chat />
+					<AuthRoute component={Chat} />
+				</Route>
+
+				<Route exact path='/authorize'>
+					<AuthorizeUser />
 				</Route>
 
 				<ErrorPage status={404} style={{ minHeight: '100vh' }} />
 			</Switch>
 			<Timer />
 		</Router>
-	) : status === 'loading' ? (
-		<LoaderSpinner
-			style={{
-				height: '100vh',
-				overflow: 'hidden',
-			}}
-		/>
-	) : (
-		<ErrorPage status={status} style={{ minHeight: '100vh' }} />
 	)
 }
 

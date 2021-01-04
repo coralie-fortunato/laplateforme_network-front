@@ -2,10 +2,28 @@ import { create, deletion, find, update } from './Api'
 import Cookies from 'js-cookie'
 import API_BASE_URL from '../config/index'
 
-Cookies.set(
-	'jwt_token',
-	'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ7XCJpZFwiOlwiNTFcIixcImZpcnN0bmFtZVwiOm51bGwsXCJsYXN0bmFtZVwiOm51bGwsXCJlbWFpbFwiOlwiem9sdGFuQHlvcG1haWwuY29tXCIsXCJwYXNzd29yZFwiOlwiJDJ5JDEwJERZRXZZOVdKWndXY1BQNFFxeHB0dk90UnYuaXh6NlFMLmY3RHhvTUw0d1RkZlpRaDVSUkVDXCIsXCJiaXJ0aGRhdGVcIjpudWxsLFwiYXZhdGFyXCI6bnVsbCxcImNvdmVyXCI6bnVsbCxcImxpbmtlZGluXCI6bnVsbCxcImdpdGh1YlwiOm51bGwsXCJ3ZWJzaXRlXCI6bnVsbCxcImRlc2NyaXB0aW9uXCI6bnVsbCxcImlkX3Byb21vXCI6bnVsbCxcImlkX3RyYWluaW5nXCI6bnVsbCxcImFkbWluXCI6XCIwXCIsXCJjcmVhdGVkX2F0XCI6XCIyMDIwLTEyLTMxIDE2OjE5OjM1XCIsXCJ1cGRhdGVkX2F0XCI6XCIwMDAwLTAwLTAwIDAwOjAwOjAwXCJ9IiwiaWF0IjoxNjA5NDI3OTgxfQ.OC0ZYa5NCYyDCb1tJZqs3GwHfqMYkyUw5v5krYsVces'
-)
+const consent = async () =>
+	await find('/consent', false)
+		.then(async (res) => {
+			const status = res.status
+			if (status === 200) {
+				return { data: await res.json(), status: status }
+			} else {
+				return { data: null, status: status }
+			}
+		})
+		.catch((error) => ({ data: null, status: 500 }))
+const authorize = async (data) =>
+	await create(data, `/authorize`, false)
+		.then(async (res) => {
+			const status = res.status
+			if (status === 200) {
+				return { data: await res.json(), status: status }
+			} else {
+				return { data: null, status: status }
+			}
+		})
+		.catch((error) => ({ data: null, status: 500 }))
 
 const getCurrentUser = async () =>
 	await find('/signin', true, Cookies.get('jwt_token'))
@@ -159,6 +177,18 @@ const getFollows = async () =>
 		})
 		.catch((error) => ({ data: null, status: 500 }))
 
+const getTags = async () =>
+	await find(`/tags`, true, Cookies.get('jwt_token'))
+		.then(async (res) => {
+			const status = res.status
+			if (status === 200) {
+				return { data: await res.json(), status: status }
+			} else {
+				return { data: null, status: status }
+			}
+		})
+		.catch((error) => ({ data: null, status: 500 }))
+
 const likePost = async (id_post) =>
 	await create(
 		{
@@ -216,6 +246,18 @@ const unFollow = async (id_follow) =>
 
 const commentPost = async (data) =>
 	await create(data, `/comments`, true, Cookies.get('jwt_token'))
+		.then(async (res) => {
+			const status = res.status
+			if (status === 200) {
+				return { data: await res.json(), status: status }
+			} else {
+				return { data: null, status: status }
+			}
+		})
+		.catch((error) => ({ data: null, status: 500 }))
+
+const tagPost = async (data) =>
+	await create(data, `/post_tags`, true, Cookies.get('jwt_token'))
 		.then(async (res) => {
 			const status = res.status
 			if (status === 200) {
@@ -456,4 +498,8 @@ export {
 	getChats,
 	getChat,
 	createMessage,
+	getTags,
+	tagPost,
+	consent,
+	authorize,
 }

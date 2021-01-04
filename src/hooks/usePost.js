@@ -96,16 +96,15 @@ const usePost = (id) => {
 	}, [id])
 
 	useEffect(() => {
-		post &&
+		if (post && post.post) {
 			setFormattedContent(
 				post.post.content.replace(
 					/(https:\/\/[a-z0-9\S]+)/g,
 					"<a href='$1'>lien</a>"
 				)
 			)
-		post && setLinks(post.post.content.match(/https:\/\/[a-z0-9\S]+/g))
+			setLinks(post.post.content.match(/https:\/\/[a-z0-9\S]+/g))
 
-		if (post) {
 			if (post.post.image_path) {
 				try {
 					const parsedImages = JSON.parse(post.post.image_path).map(

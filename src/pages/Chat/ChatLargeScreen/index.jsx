@@ -18,15 +18,15 @@ const ChatLargeScreen = ({
 }) => {
 	return (
 		<section
-			className='col-12 p-0'
+			className='col-12'
 			style={{ minheight: '100vh' }}
 			ref={chatSectionContainerRef}
 		>
 			<div className='row' id='chat-main-row'>
-				<div className='col-lg-3 d-none d-lg-block position-relative bg-yellow-color'>
+				<div className='col-lg-2 d-none d-lg-block position-relative bg-yellow-color'>
 					<Navigation chatSectionContainerRef={chatSectionContainerRef} />
 				</div>
-				<div className='h-100 col-lg-3 d-none d-lg-block overflow-auto position-relative bg-primary-color'>
+				<div className='h-100 col-lg-4 d-none d-lg-block overflow-auto position-relative bg-primary-color'>
 					{chats.map((chat) => (
 						<Conversation
 							key={`chat-${chat.id}`}
@@ -50,14 +50,14 @@ const ChatLargeScreen = ({
 				</div>
 			</div>
 			<div className='row' id='chat-action-row'>
-				<div className='col-lg-3 d-none d-lg-flex flex-column justify-content-center bg-yellow-color'>
+				<div className='col-lg-2 d-none d-lg-flex flex-column justify-content-center bg-yellow-color'>
 					<div>
 						<Link to='/' className='btn btn-lg btn-danger col-12'>
 							Deconnexion
 						</Link>
 					</div>
 				</div>
-				<div className='col-lg-3 d-none d-lg-flex flex-column justify-content-center bg-primary-color'>
+				<div className='col-lg-4 d-none d-lg-flex flex-column justify-content-center bg-primary-color'>
 					<div>
 						<button
 							className='btn btn-lg bg-yellow-color text-dark col-12'

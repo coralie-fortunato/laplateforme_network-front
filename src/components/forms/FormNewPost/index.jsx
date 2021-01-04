@@ -1,14 +1,19 @@
-import React, { useState } from 'react'
-import { uploadFile, post } from '../../../services/Api/requests'
+import React, { useState, useEffect } from 'react'
+import {
+	uploadFile,
+	post,
+	getTags,
+	tagPost,
+} from '../../../services/Api/requests'
 import DropZone from '../../DropZone/index'
 import { useSelector } from 'react-redux'
-import './index.scss'
 import LoaderSpinner from '../../LoaderSpinner'
 import ErrorPage from '../../../pages/ErrorPage'
 import IconClose from '../../icons/IconClose/index'
+import './index.scss'
 
 const FormNewPost = ({ setNewPost, setModalDisplayed }) => {
-	const [status, setStatus] = useState(200)
+	const [status, setStatus] = useState('loading')
 	const current_user = useSelector((state) => state.current_user)
 	const [droppImageFields, setDroppImageField] = useState([
 		{ id: 'dropField-1', droppedImage: null },
@@ -16,6 +21,20 @@ const FormNewPost = ({ setNewPost, setModalDisplayed }) => {
 	const [content, setContent] = useState(
 		"Un tips à partager, besoin d'un peu d'aide, n'hesites pas c'est ici est maintenant !"
 	)
+	const [selectedTag, setSelectedTag] = useState(null)
+	const [tags, setTags] = useState([])
+
+	useEffect(() => {
+		const fetchTags = async () => {
+			const { data, status } = await getTags()
+			if (status === 200) {
+				setTags(data.data)
+			}
+			setStatus(status)
+		}
+
+		fetchTags()
+	}, [])
 
 	const handleDroppedImage = (droppedImage, fieldId) => {
 		const updatedImageField = droppImageFields.find(
@@ -48,6 +67,14 @@ const FormNewPost = ({ setNewPost, setModalDisplayed }) => {
 	const handleInput = (event) => {
 		setContent(event.target.value)
 	}
+
+	const handleTagSelection = (event) => {
+		const selectedTagId = parseInt(
+			Array.from(event.target.selectedOptions)[0].value
+		)
+		selectedTagId !== 0 && setSelectedTag(selectedTagId)
+	}
+
 	const handleSubmit = async (event) => {
 		event.preventDefault()
 		setStatus('loading')
@@ -82,9 +109,15 @@ const FormNewPost = ({ setNewPost, setModalDisplayed }) => {
 				image_path: JSON.stringify(imagesUrls),
 			})
 
-			if (status === 200) {
+			if (status === 200 && selectedTag) {
+				await tagPost({
+					id_post: data.id,
+					id_tag: selectedTag,
+				})
 				setNewPost(data)
+				setModalDisplayed(false)
 			}
+
 			setStatus(status)
 		} else {
 			setStatus(403)
@@ -102,6 +135,23 @@ const FormNewPost = ({ setNewPost, setModalDisplayed }) => {
 			<h2>Publier vos pensées ...</h2>
 			<hr className='mb-4' />
 			<h5>Rediger un nouveau message </h5>
+
+			<div className='form-group d-flex flex-column'>
+				<label htmlFor='post_tag'>Choisir une catégorie pour votre poste</label>
+				<select
+					name='post_tag'
+					id='pst_tag'
+					className='form-select-lg'
+					onChange={handleTagSelection}
+				>
+					<option value='0'>Pas de catégorie</option>
+					{tags?.map((tag) => (
+						<option key={`tag-${tag.id}`} value={tag.id}>
+							{tag.name}
+						</option>
+					))}
+				</select>
+			</div>
 			<div className='form-group'>
 				<textarea
 					name=''

@@ -14,7 +14,7 @@ const PostGroup = ({
 
 	const handleClick = async () => {
 		if (feedContent.feed_content.next.match(/users/)) {
-			const { data, status } = await await getFeedContent(
+			const { data, status } = await getFeedContent(
 				current_user.id,
 				feedContent.feed_content.next
 			)
@@ -36,7 +36,7 @@ const PostGroup = ({
 				}
 			}
 		} else {
-			const { data, status } = await await searchPosts(
+			const { data, status } = await searchPosts(
 				null,
 				feedContent.feed_content.next
 			)

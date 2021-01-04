@@ -2,8 +2,15 @@ import React from 'react'
 import laPlateformeLogo from './img/logo_laplateforme.png'
 import googleLogo from './icons/google_brand.png'
 import './index.scss'
+import { consent } from '../../services/Api/requests'
 
 const Registration = () => {
+	const handleRegistration = async () => {
+		const { data, status } = await consent()
+		if (status === 200) {
+			window.location = data.url
+		}
+	}
 	return (
 		<main className='container-fluid p-0 bg-register'>
 			<div className='overlay-linear-gradient'>
@@ -19,7 +26,10 @@ const Registration = () => {
 							<div className='container-fluid text-center'>
 								<h1 className='text-primary'>Bienvenue</h1>
 
-								<button className='btn btn-lg btn-light col-12 col-md-9 relative my-4'>
+								<button
+									className='btn btn-lg btn-light col-12 col-md-9 relative my-4'
+									onClick={handleRegistration}
+								>
 									<img
 										src={googleLogo}
 										alt='google authentication'

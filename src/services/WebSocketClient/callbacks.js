@@ -38,11 +38,12 @@ const sendMessageInNewConversation = async (
 	currentChatRef
 ) => {
 	event.preventDefault()
+	const subscribers = [
+		...selectedSubscribers.map((element) => element.id),
+		current_user.id,
+	]
 	const message = {
-		subscribers: [
-			...selectedSubscribers.map((element) => element.id),
-			current_user.id,
-		],
+		subscribers,
 		content,
 	}
 	const { data: newMessage, status: newMessageStatus } = await createMessage(
@@ -66,7 +67,10 @@ const sendMessageInNewConversation = async (
 				behavior: 'smooth',
 			})
 		}
-		WEBSOCKET_CLIENT.send(JSON.stringify(newMessage))
+
+		WEBSOCKET_CLIENT.send(
+			JSON.stringify({ ...newMessage, subscribers: subscribers })
+		)
 		setModalDisplayed(false)
 	}
 }

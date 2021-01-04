@@ -16,7 +16,8 @@ const FormCreateMessage = ({ currentChat }) => {
 		}
 		const { data, status } = await createMessage(message)
 		if (status === 200) {
-			WEBSOCKET_CLIENT.send(JSON.stringify(data))
+			const newMessage = { ...data, subscribers: currentChat.subscriber_ids }
+			WEBSOCKET_CLIENT.send(JSON.stringify(newMessage))
 		}
 	}
 	return (

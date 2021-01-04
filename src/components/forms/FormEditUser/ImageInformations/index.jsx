@@ -7,7 +7,7 @@ import ErrorPage from '../../../../pages/ErrorPage'
 
 const ImageInformations = ({ setUserData }) => {
 	const current_user = useSelector((state) => state.current_user)
-	const [status, setStatus] = useState('loading')
+	const [status, setStatus] = useState(200)
 	const [droppedImageAvatar, setDroppedImageAvatar] = useState(null)
 	const [droppedImageCover, setDroppedImageCover] = useState(null)
 
