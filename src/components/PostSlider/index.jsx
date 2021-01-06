@@ -9,7 +9,9 @@ const PostSlider = ({ sliderData, classNames }) => {
 			{sliderData?.map((image) => (
 				<div key={image}>
 					<img
-						src={API_BASE_URL + '/images/' + image}
+						src={
+							image.match(/http/g) ? image : API_BASE_URL + '/images/' + image
+						}
 						alt='post'
 						className='img-fluid'
 					/>

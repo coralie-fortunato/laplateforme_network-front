@@ -3,7 +3,6 @@ import Navigation from '../Navigation'
 import Conversation from '../../../components/Conversation/index'
 import Message from '../../../components/Message'
 import IconEmptyResults from '../../../components/icons/IconEmptyResults'
-import { Link } from 'react-router-dom'
 import FormCreateMessage from '../../../components/forms/FormCreateMessage/index'
 
 const ChatLargeScreen = ({
@@ -50,13 +49,7 @@ const ChatLargeScreen = ({
 				</div>
 			</div>
 			<div className='row' id='chat-action-row'>
-				<div className='col-lg-2 d-none d-lg-flex flex-column justify-content-center bg-yellow-color'>
-					<div>
-						<Link to='/' className='btn btn-lg btn-danger col-12'>
-							Deconnexion
-						</Link>
-					</div>
-				</div>
+				<div className='col-lg-2 d-none d-lg-flex flex-column justify-content-center bg-yellow-color'></div>
 				<div className='col-lg-4 d-none d-lg-flex flex-column justify-content-center bg-primary-color'>
 					<div>
 						<button

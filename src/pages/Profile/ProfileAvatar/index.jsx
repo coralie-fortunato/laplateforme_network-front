@@ -15,7 +15,13 @@ const ProfileAvatar = ({ user_id, avatar, email, style, title, onClick }) => {
 				onClick={onClick ? onClick : null}
 			>
 				<img
-					src={avatar ? API_BASE_URL + '/images/' + avatar : avatarPlaceholder}
+					src={
+						avatar
+							? avatar.match(/http/g)
+								? avatar
+								: API_BASE_URL + '/images/' + avatar
+							: avatarPlaceholder
+					}
 					alt='user avatar'
 					className='rounded-circle'
 					style={{ objectFit: 'cover', height: '100%', width: '100%' }}
