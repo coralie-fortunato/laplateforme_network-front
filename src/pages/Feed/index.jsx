@@ -97,7 +97,7 @@ const Feed = () => {
 						</div>
 					</div>
 				</div>
-				<ActionBar />
+				<ActionBar modalTarget={modalTargetRef} />
 			</section>
 		</>
 	) : status === 'loading' ? (
