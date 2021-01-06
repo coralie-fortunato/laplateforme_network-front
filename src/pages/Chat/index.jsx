@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import ReactDOM from 'react-dom'
-import WEBSOCKET_CLIENT from '../../services/WebSocketClient/index'
+import {
+	CONNECTION_TYPE,
+	WEBSOCKET_CLIENT,
+} from '../../services/WebSocketClient/index'
 import { appendNewMessage } from '../../services/WebSocketClient/callbacks'
 import { getChats } from '../../services/Api/requests'
 import Modal from '../../components/Modal'
@@ -35,6 +38,22 @@ const Chat = () => {
 				: setScreenSize('large')
 		}
 		window.addEventListener('resize', handleScreenResize)
+		WEBSOCKET_CLIENT.onopen = function () {
+			console.log('WebSocket Client Connected')
+		}
+		WEBSOCKET_CLIENT.onerror = function () {
+			// eslint-disable-next-line no-import-assign
+			WEBSOCKET_CLIENT = new WebSocket(`${CONNECTION_TYPE}://localhost:8080`)
+		}
+		WEBSOCKET_CLIENT.onmessage = async (newMessage) => {
+			const messageObj = JSON.parse(newMessage.data)
+			if (!chats.find((element) => element.id === messageObj.message_id_chat)) {
+				console.log(
+					chats.find((element) => element.id === messageObj.message_id_chat)
+				)
+				setReloadChats(reloadChats + 1)
+			}
+		}
 	}, [])
 
 	useEffect(() => {
@@ -46,11 +65,8 @@ const Chat = () => {
 				await appendNewMessage(
 					newMessage,
 					setCurrentChat,
-					setReloadChats,
 					currentChat,
-					currentChatRef,
-					chats,
-					reloadChats
+					currentChatRef
 				)
 		}
 	}, [currentChat])

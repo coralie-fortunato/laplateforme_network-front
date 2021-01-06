@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import WEBSOCKET_CLIENT from '../../services/WebSocketClient/index'
+import { WEBSOCKET_CLIENT } from '../../services/WebSocketClient/index'
 
 const Timer = () => {
 	const [currentTime, setCurrentTime] = useState(Date.now())

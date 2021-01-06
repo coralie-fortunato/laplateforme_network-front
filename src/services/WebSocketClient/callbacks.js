@@ -1,14 +1,11 @@
 import { createMessage, getChat, getChats } from '../Api/requests'
-import WEBSOCKET_CLIENT from './index'
+import { WEBSOCKET_CLIENT } from './index'
 
 const appendNewMessage = async (
 	newMessage,
 	setCurrentChat,
-	setReloadChats,
 	currentChat,
-	currentChatRef,
-	chats,
-	reloadChats
+	currentChatRef
 ) => {
 	const messageData = JSON.parse(newMessage.data)
 	if (messageData.message_id_chat === currentChat.id) {
@@ -20,10 +17,6 @@ const appendNewMessage = async (
 				behavior: 'smooth',
 			})
 		}
-	} else if (
-		!chats.find((element) => element.id === messageData.message_id_chat)
-	) {
-		setReloadChats(reloadChats + 1)
 	}
 }
 
@@ -39,8 +32,8 @@ const sendMessageInNewConversation = async (
 ) => {
 	event.preventDefault()
 	const subscribers = [
-		...selectedSubscribers.map((element) => element.id),
-		current_user.id,
+		...selectedSubscribers.map((element) => parseInt(element.id)),
+		parseInt(current_user.id),
 	]
 	const message = {
 		subscribers,
@@ -68,9 +61,7 @@ const sendMessageInNewConversation = async (
 			})
 		}
 
-		WEBSOCKET_CLIENT.send(
-			JSON.stringify({ ...newMessage, subscribers: subscribers })
-		)
+		WEBSOCKET_CLIENT.send(JSON.stringify({ ...newMessage, subscribers }))
 		setModalDisplayed(false)
 	}
 }

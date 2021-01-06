@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { sendMessageInNewConversation } from '../../../services/WebSocketClient/callbacks'
 import AutocompleteSubscribers from './AutocompleteSubscribers'
 import IconMinus from '../../icons/IconMinus/index'
-import './index.scss'
 import IconClose from '../../icons/IconClose/index'
+import './index.scss'
 
 const FormNewChat = ({
 	setCurrentChat,

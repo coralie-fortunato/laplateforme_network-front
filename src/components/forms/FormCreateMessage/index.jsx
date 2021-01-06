@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { createMessage } from '../../../services/Api/requests'
-import WEBSOCKET_CLIENT from '../../../services/WebSocketClient/index'
+import { WEBSOCKET_CLIENT } from '../../../services/WebSocketClient/index'
 
 const FormCreateMessage = ({ currentChat }) => {
 	const [content, setContent] = useState('')
