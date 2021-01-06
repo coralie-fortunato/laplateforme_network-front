@@ -28,11 +28,11 @@ npm start
 ```
 
 
-### API is available at <Nothing here yet>
+### API is available at <https://github.com/antoine-leguillou/social-network>
 
 
 ### Contributors
 
-TO BE AMENDED
+Coralie Fortunato <https://github.com/coralie-fortunato>
 
 
