@@ -28,11 +28,10 @@ npm start
 ```
 
 
-### API is available at <Nothing here yet>
+### API is available at <https://github.com/antoine-tech/laplateforme-network-api>
 
 
 ### Contributors
-
-TO BE AMENDED
+Antoine LE GUILLOU <https://github.com/antoine-tech/>
 
 

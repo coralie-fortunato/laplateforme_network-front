@@ -61,7 +61,7 @@ const CommentGroup = ({
 			/>
 		</div>
 	) : status === 'loading' ? (
-		<LoaderSpinnerMini style={{ height: '100vh' }} />
+		<LoaderSpinnerMini style={{ width: '2rem', height: '2rem' }} />
 	) : (
 		<ErrorPage status={status} style={{ height: '100%' }} />
 	)

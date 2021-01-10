@@ -9,6 +9,11 @@ import { useSelector } from 'react-redux'
 import LoaderSpinner from '../../components/LoaderSpinner'
 import ErrorPage from '../ErrorPage'
 import ProfileAvatar from '../Profile/ProfileAvatar/index'
+import eventStream from '../../services/ServerSentEvent'
+import {
+	updateFeedContentFromStream,
+	initStream,
+} from '../../services/ServerSentEvent/callbacks'
 
 const Feed = () => {
 	const [status, setStatus] = useState('loading')
@@ -16,7 +21,6 @@ const Feed = () => {
 	const [feedContent, setFeedContent] = useState([])
 	const [users, setUsers] = useState([])
 	const modalTargetRef = useRef(null)
-
 	useEffect(() => {
 		const fetchData = async (current_user_id) => {
 			const {
@@ -28,6 +32,14 @@ const Feed = () => {
 				setFeedContent(feed_content)
 				setUsers(users)
 				setStatus(200)
+				eventStream.onopen = () => initStream()
+				eventStream.onmessage = async (event) =>
+					await updateFeedContentFromStream(
+						event,
+						feed_content,
+						setFeedContent,
+						current_user_id
+					)
 			} else {
 				status_feed_content !== 200 && setStatus(status_feed_content)
 				status_user !== 200 && setStatus(status_user)

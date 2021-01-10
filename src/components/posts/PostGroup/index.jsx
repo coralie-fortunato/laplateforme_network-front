@@ -59,7 +59,11 @@ const PostGroup = ({
 				let { id } = post
 				return (
 					<Pulse key={`pulse-${baseKey}-${id}`}>
-						<PostCard key={`${baseKey}-${id}`} id={id} />
+						<PostCard
+							key={`${baseKey}-${id}`}
+							id={id}
+							feedContent={feedContent}
+						/>
 					</Pulse>
 				)
 			})}

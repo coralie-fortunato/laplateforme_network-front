@@ -12,7 +12,7 @@ import { ReactTinyLink } from 'react-tiny-link'
 import PostSlider from '../../../PostSlider/index'
 import './index.scss'
 
-const PostMedium = ({ id }) => {
+const PostMedium = ({ id, feedContent }) => {
 	const {
 		status,
 		post,
@@ -26,7 +26,7 @@ const PostMedium = ({ id }) => {
 		handleNewComment,
 		handleDeleteComment,
 		handleNewPostReaction,
-	} = usePost(id)
+	} = usePost(id, feedContent)
 
 	return status === 200 && post ? (
 		<>

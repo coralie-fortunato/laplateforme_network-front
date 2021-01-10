@@ -7,7 +7,7 @@ import {
 	unLikePost,
 } from '../services/Api/requests'
 
-const usePost = (id) => {
+const usePost = (id, feedContent) => {
 	const current_user = useSelector((state) => state.current_user)
 	const [post, setPost] = useState()
 	const [isEmojiPickerDisplayed, setEmojiPickerDisplay] = useState(false)
@@ -93,7 +93,7 @@ const usePost = (id) => {
 		}
 		fetchReaction()
 		fetchPost(id)
-	}, [id])
+	}, [id, feedContent])
 
 	useEffect(() => {
 		if (post && post.post) {
