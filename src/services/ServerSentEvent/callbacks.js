@@ -1,8 +1,7 @@
 const updateFeedContentFromStream = async (
 	event,
 	feedContent,
-	setFeedContent,
-	current_user_id
+	setFeedContent
 ) => {
 	const streamData = JSON.parse(event.data)
 	if (streamData.length > 0 && feedContent.feed_content) {

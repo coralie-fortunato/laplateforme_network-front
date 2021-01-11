@@ -22,10 +22,16 @@ const ChatLargeScreen = ({
 			ref={chatSectionContainerRef}
 		>
 			<div className='row' id='chat-main-row'>
-				<div className='col-lg-2 d-none d-lg-block position-relative bg-yellow-color'>
+				<div
+					className='col-lg-2 d-none d-lg-block position-relative'
+					style={{ backgroundColor: '#F5F5F5' }}
+				>
 					<Navigation chatSectionContainerRef={chatSectionContainerRef} />
 				</div>
-				<div className='h-100 col-lg-4 d-none d-lg-block overflow-auto position-relative bg-primary-color'>
+				<div
+					className='h-100 col-lg-4 d-none d-lg-block overflow-auto position-relative'
+					style={{ backgroundColor: '#E8E8E8' }}
+				>
 					{chats.map((chat) => (
 						<Conversation
 							key={`chat-${chat.id}`}
@@ -36,7 +42,7 @@ const ChatLargeScreen = ({
 					))}
 				</div>
 				<div
-					className='h-100 col-12 col-lg-6 d-block overflow-auto position-relative bg-light p-4'
+					className='h-100 col-12 col-lg-6 d-block overflow-auto position-relative p-4 bg-light'
 					ref={currentChatRef}
 				>
 					{currentChat?.messages.length > 0 ? (
@@ -49,11 +55,17 @@ const ChatLargeScreen = ({
 				</div>
 			</div>
 			<div className='row' id='chat-action-row'>
-				<div className='col-lg-2 d-none d-lg-flex flex-column justify-content-center bg-yellow-color'></div>
-				<div className='col-lg-4 d-none d-lg-flex flex-column justify-content-center bg-primary-color'>
+				<div
+					className='col-lg-2 d-none d-lg-flex flex-column justify-content-center'
+					style={{ backgroundColor: '#F5F5F5' }}
+				></div>
+				<div
+					className='col-lg-4 d-none d-lg-flex flex-column justify-content-center'
+					style={{ backgroundColor: '#E8E8E8' }}
+				>
 					<div>
 						<button
-							className='btn btn-lg bg-yellow-color text-dark col-12'
+							className='btn btn-lg btn-primary col-12'
 							onClick={handleClick}
 						>
 							Nouvelle conversation
