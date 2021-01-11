@@ -33,5 +33,9 @@ npm start
 
 ### Contributors
 Antoine LE GUILLOU <https://github.com/antoine-tech/>
+Coralie Fortunato <https://github.com/coralie-fortunato>
+
+
+
 
 
